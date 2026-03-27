@@ -4,7 +4,7 @@ from app.database import users_collection, url_collection
 from app.auth.jwt_handler import create_access_token
 from app.utils import hash_password, verify_password
 from app.auth.dependencies import get_current_user
-
+from pydantic import BaseModel
 router = APIRouter()
 
 # REGISTER
@@ -24,14 +24,19 @@ def register(user: UserAuth):
 
 
 # LOGIN
-@router.post("/login")
-def login(user: UserAuth):
-    db_user = users_collection.find_one({"email": user.email})
+class LoginRequest(BaseModel):
+    email: str
+    password: str
 
-    if not db_user or not verify_password(user.password, db_user["password"]):
+
+@router.post("/login")
+def login(data: LoginRequest):
+    user = users_collection.find_one({"email": data.email})
+
+    if not user or not verify_password(data.password, user["password"]):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    token = create_access_token({"sub": user.email})
+    token = create_access_token({"sub": user["email"]})
 
     return {"access_token": token}
 

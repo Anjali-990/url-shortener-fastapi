@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from app.database import url_collection
 from app.models import URLRequest
 from app.utils import generate_short_code
@@ -48,15 +48,22 @@ def get_analytics(short_code: str):
     if not data:
         raise HTTPException(status_code=404, detail="URL not found")
 
+    # 1- extracting devices
+    devices = [click["device"] for  click in data["clicks"]]
+    # 2- returning analytics
     return {
         "original_url": data["original_url"],
         "short_code": data["short_code"],
         "total_clicks": len(data["clicks"]),
+        "device_stats": {
+            "mobile": devices.count("mobile"),
+            "desktop": devices.count("desktop")
+        },
         "click_details": data["clicks"]
     }
 
 @router.get("/{short_code}")
-def redirect_url(short_code: str):
+def redirect_url(short_code: str, request: Request):
     data = url_collection.find_one({"short_code": short_code})
 
     if not data:
@@ -66,18 +73,34 @@ def redirect_url(short_code: str):
     if "expiry" in data and data["expiry"] < datetime.utcnow():
         raise HTTPException(status_code=410, detail="Link expired")
 
-    # increment clicks
+     # 1-IP
+    ip = request.client.host
+
+    # 2-DEVICE DETECTION
+    user_agent = request.headers.get("user-agent", "")
+
+    if "Mobile" in user_agent:
+        device = "mobile"
+    else:
+        device = "desktop"
+
+    # 3- store clicks
     url_collection.update_one(
         {"short_code": short_code},
         {
             "$push": {
                 "clicks": {
                     "time": datetime.utcnow(),
-                    "ip": "127.0.0.1",   # (we'll improve later)
-                    "device": "unknown"
+                    "ip":ip,   #ip tracking
+                    "device": device
                 }
             }
         }
     )
     return RedirectResponse(data["original_url"])
 
+# for frontend 
+@router.get("/my-urls")
+def get_my_urls(user=Depends(get_current_user)):
+    urls = list(url_collection.find({"user_email": user}, {"_id": 0}))
+    return urls
