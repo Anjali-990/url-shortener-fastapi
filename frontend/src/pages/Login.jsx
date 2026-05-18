@@ -1,12 +1,13 @@
 import { useState } from "react";
 import API from "../api/api";
-//redirect
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
+
   const handleLogin = async () => {
     try {
       const res = await API.post("/auth/login", {
@@ -19,11 +20,12 @@ export default function Login() {
       localStorage.setItem("token", res.data.access_token);
 
       alert("Login successful!");
-      // redirect after login
+
       navigate("/my-urls");
     } catch (err) {
       console.error("ERROR:", err.response?.data);
-      alert("Login failed-1");
+
+      alert(err.response?.data?.detail || "Login failed");
     }
   };
 
@@ -32,6 +34,7 @@ export default function Login() {
       <h2>Login</h2>
 
       <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+
       <br />
       <br />
 
@@ -40,10 +43,12 @@ export default function Login() {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
+
       <br />
       <br />
 
       <button onClick={handleLogin}>Login</button>
+
       <p>
         Don't have an account?{" "}
         <span

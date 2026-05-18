@@ -1,0 +1,194 @@
+.dashboard-container {
+  min-height: 100vh;
+  padding-top: 90px;
+  background: linear-gradient(135deg, #0f172a, #10b981);
+}
+
+.dashboard-title {
+  color: white;
+  margin-bottom: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* CARD */
+.url-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.url-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* HEADER */
+.card-header-custom {
+  background: #111827;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+/* BODY */
+.card-body-custom {
+  padding: 15px;
+}
+
+/* LINKS */
+.short-link {
+  color: #10b981;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.original-url {
+  font-size: 13px;
+  color: #555;
+  margin-top: 8px;
+  word-break: break-all;
+}
+
+/* STATS */
+.clicks {
+  background: #10b981;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* BUTTONS */
+.btn-copy {
+  background: #111827;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-copy:hover {
+  background: #1f2937;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+/* EXPIRED CARD */
+.expired-card {
+  opacity: 0.75;              /* slightly faded */
+  transform: scale(0.98); /* subtle shrink */
+   background: #f9fafb;    
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+/* DISABLED LINK */
+.disabled-link {
+  pointer-events: none;
+  color: #9ca3af !important;
+  text-decoration: line-through;
+}
+
+/* EXPIRED TEXT */
+.expired-text {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* 🔥 DISABLED BUTTON */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 20px;
+  }
+}
+
+/* SEE MORE */
+.see-more {
+  color: #3b82f6;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+/* EXPIRED OVERLAY (HIDDEN BY DEFAULT) */
+.expired-overlay {
+  position: absolute;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.95); /* red overlay */
+  color: white;
+  font-weight: 800;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 1px;
+
+  transform: translateY(100%);
+  transition: 0.3s ease;
+}
+
+/* SHOW ONLY ON HOVER */
+.url-card.expired-card:hover .expired-overlay {
+  transform: translateY(0);
+  bottom: 70px;
+
+}
+
+/* SMOOTH CARD */
+.url-card {
+  transition: all 0.3s ease;
+}
+
+.url-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+/* CARD POSITION FIX */
+.url-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* EXPIRY TEXT */
+.expiry-text {
+  font-size: 13px;
+  margin-top: 8px;
+  color: #2563eb; /* blue for active */
+  font-weight: 500;
+}
+
+.expiry-text.expired-text {
+  color: #ef4444; /* red for expired */
+  font-weight: 600;
+}
