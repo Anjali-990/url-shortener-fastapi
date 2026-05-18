@@ -3,9 +3,10 @@
 A modern full-stack URL Shortener built with **FastAPI + React + MongoDB**, featuring authentication, analytics, and custom short links.
 
 ---
+
 ## 🚀 Live Project
-(Coming Soon)
----
+
+## (Coming Soon)
 
 ## ✨ Features
 
@@ -21,11 +22,13 @@ A modern full-stack URL Shortener built with **FastAPI + React + MongoDB**, feat
 ## 🛠 Tech Stack
 
 ### Backend
+
 - FastAPI
 - MongoDB
 - Python
 
 ### Frontend
+
 - React (Vite)
 - Axios
 - React Router
@@ -36,26 +39,37 @@ A modern full-stack URL Shortener built with **FastAPI + React + MongoDB**, feat
 ## 📸 Screenshots
 
 ### ✂️ URL Shortener Dashboard
+
 ![Shortener](./screenshots/homepg.PNG)
+
 ### 📊 Analytics Dashboard
+
 ![Analytics](./screenshots/analyticspg.PNG)
+
 ### 🔐 MyUrls
+
 ![MyUrls](./screenshots/myurlpg.PNG)
 
-
-
 ---
-
 
 ## 📌 API Endpoints
 
 ### 🔹 Create Short URL
+
 POST /shorten
 
 ### 🔹 Redirect URL
+
 GET /{short_code}
 
 ### 🔹 Get Analytics
+
 GET /analytics/{short_code}
 
 ---
+
+## 👩‍💻 Author
+
+**Anjali Sharma**  
+🚀 Full Stack Developer  
+Project: URL Shortener (FastAPI + React + MongoDB)
