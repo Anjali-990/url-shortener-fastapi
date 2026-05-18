@@ -45,6 +45,7 @@ A modern full-stack URL Shortener built with **FastAPI + React + MongoDB**, feat
 ### 📊 Analytics Dashboard
 
 ![Analytics](./screenshots/analyticspg.PNG)
+![Analytics](./screenshots/analyticspg2.PNG)
 
 ### 🔐 MyUrls
 
