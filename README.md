@@ -36,11 +36,11 @@ A modern full-stack URL Shortener built with **FastAPI + React + MongoDB**, feat
 ## 📸 Screenshots
 
 ### ✂️ URL Shortener Dashboard
-![Shortener](./screenshots/homepg.png)
+![Shortener](./screenshots/homepg.PNG)
 ### 📊 Analytics Dashboard
-![Analytics](./screenshots/analyticspg.png)
+![Analytics](./screenshots/analyticspg.PNG)
 ### 🔐 MyUrls
-![MyUrls](./screenshots/myurlpg.png)
+![MyUrls](./screenshots/myurlpg.PNG)
 
 
 
